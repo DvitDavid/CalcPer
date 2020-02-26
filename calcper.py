@@ -4,7 +4,6 @@ from PyQt5.QtGui import QIcon
 from PyQt5.uic import loadUi
 
 class FinestraPrincipal(QMainWindow):
-
     
     def __init__(self):
         super(FinestraPrincipal, self).__init__()
@@ -25,7 +24,7 @@ class FinestraPrincipal(QMainWindow):
     def calcCost(self):
         valor1 = float(self.iPreu.text())
         valor2 = float(self.iPreuDte.text())
-        if valor1 == 0:
+        if valor1 == 0 and valor2 == 0:
             self.missatge()
         else:
             self.etiSortRes.setText(str(round((valor1 - valor2)/valor2*100,2))+ "%")
