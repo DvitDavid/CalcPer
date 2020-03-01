@@ -4,7 +4,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.uic import loadUi
 
 class FinestraPrincipal(QMainWindow):
-    
+  
     def __init__(self):
         super(FinestraPrincipal, self).__init__()
         self.setWindowIcon(QIcon('calc.ico'))
@@ -16,11 +16,11 @@ class FinestraPrincipal(QMainWindow):
         self.btnMesIva.clicked.connect(self.posarIva)
         self.btnMenysIva.clicked.connect(self.treureIva)
         self.btnPosarZero.clicked.connect(self.posarAzero)
+        self.btnCopia.clicked.connect(self.copiaResult)
 
-        self.iPreu.setText("0")
+        self.iPreu.setText("0") 
         self.iPreuDte.setText("0")
-                      
-    
+
     def calcCost(self):
         valor1 = float(self.iPreu.text())
         valor2 = float(self.iPreuDte.text())
@@ -28,8 +28,7 @@ class FinestraPrincipal(QMainWindow):
             self.missatge()
         else:
             self.etiSortRes.setText(str(round((valor1 - valor2)/valor2*100,2))+ "%")
-    
-    
+        
     def augmentPer(self):
         valor1 = float(self.iPreu.text())
         valor2 = float(self.iPreuDte.text())
@@ -64,6 +63,12 @@ class FinestraPrincipal(QMainWindow):
         self.iPreu.setText("0")
         self.iPreuDte.setText("0")
         self.etiSortRes.setText("0")
+
+    def copiaResult(self):
+        temp = len(self.etiSortRes.text())
+        resolt = self.etiSortRes.text()[:temp-1]
+        self.iPreu.setText(resolt)
+        self.iPreuDte.setText("0")
     
 
 app = QApplication(sys.argv)
